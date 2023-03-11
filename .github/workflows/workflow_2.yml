@@ -54,3 +54,6 @@ jobs:
            pip install pytest
            source env/bin/activate
            pytest
+      - name: Deploy the resources in the cloud associated my account
+        run: |
+           zappa deploy dev
