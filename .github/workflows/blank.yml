@@ -50,7 +50,3 @@ jobs:
       - name: Run a multi-line script
         run: |
            aws s3api list-buckets
-           
-      - name: The file python type named function_f_small.py is charged to S3.
-        run: |
-            aws s3 cp ./function_f_small.py s3://bucket1tdd/
