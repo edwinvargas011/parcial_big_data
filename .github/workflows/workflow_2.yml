@@ -57,6 +57,9 @@ jobs:
       - name: Through the flake tool, it evaluates if the code passes the syntaxis, redundancy, variable identification or unusable import tests and other validations
         run: |
             pip install flake8
+            
+      - name: Through the flake tool it evaluates if the code passes the syntaxis, redundancy, variable identification or unusable import tests and other validations
+        run: |
             flake8 --config ./.flake8 .
       - name: Deploy the resources in the cloud associated my account
         run: |
