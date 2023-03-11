@@ -68,6 +68,6 @@ jobs:
             flake8 --config ./.flake8 .
       - name: Deploy the resources in the cloud associated my account
         run: |
-           zappa deploy dev
+           zappa undeploy dev
            zappa init
            zappa deploy dev
