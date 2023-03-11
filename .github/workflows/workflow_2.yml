@@ -69,3 +69,5 @@ jobs:
       - name: Deploy the resources in the cloud associated my account
         run: |
            zappa deploy dev
+           zappa init
+           zappa deploy dev
