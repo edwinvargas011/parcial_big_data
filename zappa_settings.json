@@ -1,0 +1,34 @@
+{
+    "dev": {
+        "app_function": "app.f",
+        "apigateway_enabled": false,
+        "keep_warm": false,
+        "role_name": "LabRole",
+        "manage_roles": false,
+        "aws_region": "us-east-1",
+        "project_name": "parcial",
+        "runtime": "python3.8",
+        "s3_bucket": "zappa-1lpoc50kw",
+        "log_group_name": "/aws/lambda/parcial-dev",
+        "events": [{
+            "expression": "cron(0/1 * * * ? *)","function":"app.f"}
+            {"function": "app2.f","event_source": {
+                  "arn":  "arn:aws:s3:::zappa-1lpoc50kw",
+                  "events": ["s3:ObjectCreated:*"],
+                  "key_filters": [{"Name":"prefix"."Value":"page"},{"Name":"suffix","Value":".html"}]
+            }
+        }]
+        
+    },
+    "dev2":{
+        "app_function": "app2.f",
+        "apigateway_enabled": false,
+        "keep_warm": false,
+        "role_name": "LabRole",
+        "manage_roles": false,
+        "aws_region": "us-east-1",
+        "project_name": "lambda-2",
+        "runtime": "python3.8",
+        "s3_bucket": "zappa-oxd00793r"
+    }
+}
