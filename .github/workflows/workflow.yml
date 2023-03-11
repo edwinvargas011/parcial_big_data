@@ -4,11 +4,11 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -26,15 +26,9 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.8'
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: | 
-      - name: Install virtualenv and execute pytest
+           python-version: '3.8'
+      
+      - name: Install virtualenv and execute pytest and the tests are executed
         run: | 
           pip install virtualenv
           virtualenv env
@@ -42,6 +36,8 @@ jobs:
           pip install -r requirements.txt
           pytest
           
+      # Runs a set of commands using the runners shell
+      
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -49,7 +45,8 @@ jobs:
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
           aws-region: us-east-1
-      - name: Configurar S3Api
+          
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
         run: |
-          aws s3api list-buckets
-        
+           aws s3api list-buckets
