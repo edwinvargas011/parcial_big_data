@@ -1,0 +1,8 @@
+[flake8]
+select = E,F,N,W,H
+ignore = C,E123,E133,E226,W503,E501,F403,F405,N801,N802,N803,N805,E501,E231,W293,N815,H306,E712,W292
+exclude =env,.git,.github,.pytest_cache,__pycache__,.gitignore,README.md,requirements.txt,zappa_settings.json
+max-line-length = 150
+inline-quotes = double
+per-file-ignores =
+    __init__.py:F401
