@@ -51,5 +51,6 @@ jobs:
            aws s3api list-buckets
       - name: run the unity test with pytest -
         run: |
+           pip install pytest
            source env/bin/activate
            pytest
