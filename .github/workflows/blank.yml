@@ -49,6 +49,6 @@ jobs:
       - name: Run a multi-line script
         run: |
            aws s3api list-buckets
-      - name: run the unity test with pytest
+      - name: run the unity test with pytest -
         run: |
            pytest
