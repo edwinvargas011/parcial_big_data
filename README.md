@@ -9,9 +9,7 @@ En el archivo zappa_settings.json se especifica el nombre del archivo python y l
 
 En el momento de validar el hisotria de regsitros en CloudWatch se evidenciaba que no se ejecutaba la función. Despues de varias pruebas e investigandoi en la doucmnetacipón de amazon, encontre que el serrvicio lambda viene de manera predetermnianda con el uso de la zona horaria UTC, comunmnete utilizada en varias partes del mundo. Esta era la razon de porque no se ejecutaba a la hora especificada en la función cron, despues de validar que existen 5 horas de diferencia, modifique el evento para que se ejecutara a las 13 horas, es decir las 10 horas en la zona horaria de bogotá (UTC-5).
 
-
-
-A coninuación 
+A continuación se muestra captura de pantalla del ambiente cloud9, el hsitoria de grsitros de cloudwatch, el almacenmiento de la pagian en el primer bucket y la subida de un archvio csv en el segundo bucket
 
 
 
