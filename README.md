@@ -5,7 +5,13 @@ Esta función tiene un desencadenador hacia un bucket s3 que permite guardar la 
 
 
 Despues de digitar el comando 
-En el archivo zappa_settings.json se especifica el nombre del archivo python y la función. Al igual se
+En el archivo zappa_settings.json se especifica el nombre del archivo python y la función. Al igual se esteblece que todos los lunes a las 10am se active la función lambda. nicialmente establecia la edxpresión de la sigyuinete manera:
+
+En el momento de validar el hisotria de regsitros en CloudWatch se evidenciaba que no se ejecutaba la función. Despues de varias pruebas e investigandoi en la doucmnetacipón de amazon, encontre que el serrvicio lambda viene de manera predetermnianda con el uso de la zona horaria UTC, comunmnete utilizada en varias partes del mundo. Esta era la razon de porque no se ejecutaba a la hora especificada en la función cron, despues de validar que existen 5 horas de diferencia, modifique el evento para que se ejecutara a las 13 horas, es decir las 10 horas en la zona horaria de bogotá (UTC-5).
+
+
+
+A coninuación 
 
 
 
@@ -37,8 +43,18 @@ Mira **Deployment** para conocer como desplegar el proyecto.
 _Que cosas necesitas para instalar el software y como instalarlas_
 
 ```
-Da un ejemplo
+zappa init
 ```
+
+```
+zappa deploy dev
+```
+```
+zappa update dev
+```
+
+Se encarga de
+
 
 ### Instalación 🔧
 
