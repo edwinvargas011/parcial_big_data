@@ -1,6 +1,18 @@
 # Ejecución de la funcion lambda para la descarga del archvio .html
-Se codnfigura un veneto a las 10 am de cada lunes, con el fdin de que se realice un trigger hacia la funcipón lmabda y se ejecute la función f, escrita en lenguaje python.
-Esta función tiene un desencadenador hacia un bucket s3 que permite guardar la pagina en una carpeta llamada landing-casas-xxx.  Del mismo modo, para raelizar el web scrapping se debe leer el archivo 
+Se realiza web sraping a la pagina de mitula Se codnfigura un veneto a las 10 am de cada lunes, con el fdin de que se realice un trigger hacia la funcipón lmabda y se ejecute la función f, escrita en lenguaje python.
+Esta función tiene un desencadenador hacia un bucket s3 que permite guardar la pagina en una carpeta llamada landing-casas-xxx de un BucketS3.  Del mismo modo, para raelizar el web scrapping se debe leer el archivo obteniendo el contenido en formato html. El nombre del archivo contine la fecha de ejecución del lambda.
+
+
+
+Despues de digitar el comando 
+En el archivo zappa_settings.json se especifica el nombre del archivo python y la función. Al igual se
+
+
+
+
+
+
+
 
 Se observa que existe una generalidad en la pagina, ya que en cada etiqueta de clase listing-lising card se tiene como atributos, la cantidad de baños, habitaciones y precio. Para cada casa en algunas ocasiones no se especifica la cantidad de baños o abitaciones, es por esto que primero se realiza una validación en donde si no se espcifica la cantidad se ingresa un valor nulo a la lista.
 
