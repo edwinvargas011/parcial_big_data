@@ -1,3 +1,3 @@
 # parcial_big_data_Cancel changes
 
-![Texto alternativo](https://www.educacionbogota.edu.co/portal_institucional/sites/default/files/2020-05/Col%20Pablo%20VI%2012.jpg)
+![Texto alternativo](https://i.pinimg.com/originals/07/af/b4/07afb49f8f326b2610c79bf7cbed4010.png)
