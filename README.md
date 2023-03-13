@@ -185,4 +185,4 @@ Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md
 
 ---
 ⌨️ con ❤️ por [Villanuevand](https://github.com/Villanuevand) 😊
-![Texto alternativo](https://i.postimg.cc/c4SsMg9P/Captura-de-pantalla-2023-03-12-234133.png)
+![Texto alternativo](https://i.postimg.cc/0NBSbdCT/Captura-de-pantalla-2023-03-12-234133.png)
