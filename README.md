@@ -189,5 +189,6 @@ Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md
 ![Texto alternativo](https://i.postimg.cc/yY1NC3mc/Captura-de-pantalla-2023-03-12-233732.png)
 ![Texto alternativo](https://i.postimg.cc/yNZ1ymK4/Captura-de-pantalla-2023-03-12-233355.png)
 ![Texto alternativo](https://i.postimg.cc/g25chMfH/Captura-de-pantalla-2023-03-12-232012.png)
-![Texto alternativo](https://i.postimg.cc/0NBSbdCT/Captura-de-pantalla-2023-03-12-234133.png)
+![Texto alternativo](https://i.postimg.cc/K84vRXsY/Captura-de-pantalla-2023-03-12-231937.png)
+![Texto alternativo](https://i.postimg.cc/bJfzCZYG/Captura-de-pantalla-2023-03-12-231529.png)
 
