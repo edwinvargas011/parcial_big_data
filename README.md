@@ -54,80 +54,26 @@ Se encarga de
 
 ### Pruebas unitarias 🔧
 1. Se simula la descarga de una página web utilizando la biblioteca urllib.request y se valida el contenido HTML descargado.
-2. Se hace una prueba para validar si el nombre de dominio se encunetra asocidao a una dirección ip que permite saber en que lugar del mundo se encuentra ubicado el servidor
+2. 
+3. Se hace una prueba para validar si el nombre de dominio se encuentra asociado a una dirección ip que permite saber en que lugar del mundo se encuentra ubicado el servidor.
 
-omo entrada y devuelve True si el nombre de host se puede resolver a una dirección IP utilizando socket.
+3. Se realiza la petición de tipo GET a la pagina de mitula y se recibe un codigo que se encuentra en el encabezado del mensaje que permite validar si existieron problemas de comunicación desde la parte del cliente o del servidor.
 
-3. Se realiza la petición de tipo GET a la pagina de mitula y se recibe el un codigo que encuentra en el encabezado del mensaje que permite validar si existieron problemas de comunicación desde la parte del cliente o del servidor
-
-4. Se obtiene un archivo html a partir de la url de la pagina de Mitula devuelve el status code 200 si se sube correctamente a un bucket de s3. Para esto se analiza la meta data de la respuesta. La solicitud es satisfactoria y sin erorres cuando se recibe un 200 como respuesta. 
+4. Se obtiene un archivo html a partir de la url de la pagina de Mitula y despues se aloja en un bucket s3. Para conocer si esta operación fue exitosa, se analiza la meta data de la respuesta. La solicitud es satisfactoria y sin erorres cuando se recibe un 200 como respuesta. 
 
 ```
 def validate_code(url):
     return urllib.request.urlopen(url).getcode()
 
 ```
-
-
-
-
-
-
+![Texto alternativo](https://i.postimg.cc/0NBSbdCT/Captura-de-pantalla-2023-03-12-234133.png)
+![Texto alternativo](https://i.postimg.cc/yY1NC3mc/Captura-de-pantalla-2023-03-12-233732.png)
 
 ### Revisión de codigo limpio🔧
-La libreria flake8 permite examinar los archvios especilamnete de lenugaje python con el fin de advertir errores de sintaxis,redundancia de codigo, el nivel de complejidad de las funciones,variables o impoertaciones no utilizadas durante el desarrollo del cdogio. Se crea un archvio de configuración perosnaliazdo en donde se decide que tipo de reglas aplicar.
+La libreria flake8 permitia examinar los archivos especilamnete de lenguaje python con el fin de advertir errores de sintaxis,redundancia de codigo, el nivel de complejidad de las funciones,variables o impoertaciones no utilizadas durante el desarrollo del cdogio. Se crea un archvio de configuración perosnaliazdo en donde se decide que tipo de reglas aplicar.
 ```
 flake8 --config=.flake8
 ```
-
-
-
-
-_Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
-
-_Dí cómo será ese paso_
-
-```
-Da un ejemplo
-```
-
-_Y repite_
-
-```
-hasta finalizar
-```
-
-_Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
-
-## Ejecutando las pruebas ⚙️
-
-_Explica como ejecutar las pruebas automatizadas para este sistema_
-
-### Analice las pruebas end-to-end 🔩
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
-
-### Y las pruebas de estilo de codificación ⌨️
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
-
-## Despliegue 📦
-
-* [Zappa] - Despliegue
-* [pytest] - Ejecución de pruebas
-* [flake8] - Usado para generar RSS
-
-
----
-⌨️ con ❤️ por [Villanuevand](https://github.com/Villanuevand) 😊
 ![Texto alternativo](https://i.postimg.cc/0NBSbdCT/Captura-de-pantalla-2023-03-12-234133.png)
 ![Texto alternativo](https://i.postimg.cc/yY1NC3mc/Captura-de-pantalla-2023-03-12-233732.png)
 ![Texto alternativo](https://i.postimg.cc/yNZ1ymK4/Captura-de-pantalla-2023-03-12-233355.png)
