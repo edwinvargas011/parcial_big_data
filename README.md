@@ -1,3 +1,9 @@
+* Autor: Edwin Alexander Vargas Jimenez 
+* Universidad Sergio Arboleda
+* Big Data
+* Parcial 3° corte
+* Domingo 12 de marzo del 2023
+
 # Ejecución de la funcion lambda para la descarga del archvio .html
 Se realiza web sraping a la pagina de mitula Se codnfigura un veneto a las 10 am de cada lunes, con el fdin de que se realice un trigger hacia la funcipón lmabda y se ejecute la función f, escrita en lenguaje python.
 Esta función tiene un desencadenador hacia un bucket s3 que permite guardar la pagina en una carpeta llamada landing-casas-xxx de un BucketS3.  Del mismo modo, para raelizar el web scrapping se debe leer el archivo obteniendo el contenido en formato html. El nombre del archivo contine la fecha de ejecución del lambda.
@@ -191,4 +197,4 @@ Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md
 ![Texto alternativo](https://i.postimg.cc/g25chMfH/Captura-de-pantalla-2023-03-12-232012.png)
 ![Texto alternativo](https://i.postimg.cc/K84vRXsY/Captura-de-pantalla-2023-03-12-231937.png)
 ![Texto alternativo](https://i.postimg.cc/bJfzCZYG/Captura-de-pantalla-2023-03-12-231529.png)
-
+![Texto alternativo](https://i.postimg.cc/6qkLysd4/Captura-de-pantalla-2023-03-13-022143.png)
