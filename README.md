@@ -3,10 +3,10 @@
 * Parcial 3° corte
 * Domingo 12 de marzo de 2023
 ## Ejecución de la función lambda para la descarga del archivo .html
-Se describe el proceso realizado para hacer web scraping a la página de Mitula. Por un lado, se configura un evento a las 10 am de cada lunes, con el fin de que se realice un trigger hacia la función lambda y se ejecute la función f, escrita en lenguaje Python. Esta función tiene un desencadenador hacia un bucket s3 que permite guardar la página en una carpeta llamada landing-casas-xxx. Del mismo modo, para realizar el web scraping se debe leer el archivo obteniendo el contenido en formato html almacenado en el primer bucket.
+Se describe el proceso realizado para hacer web scraping a la página de Mitula. Por un lado, se configura un evento a las 9 am de cada lunes, con el fin de que se realice un trigger hacia la función lambda y se ejecute la función f, escrita en lenguaje Python. Esta función tiene un desencadenador hacia un bucket s3 que permite guardar la página en una carpeta llamada landing-casas-xxx. Del mismo modo, para realizar el web scraping se debe leer el archivo obteniendo el contenido en formato html almacenado en el primer bucket.
 
 ### Expresión Cron - Agendar evento 🚀
-Después de digitar el comando, en el archivo zappa_settings.json se especifica el nombre del archivo Python y la función. Asimismo, se establece que todos los lunes a las 9 am se active la función lambda. Inicialmente establecí la expresión de la siguiente manera: cron(0 9 ? '*' MON '*'). En el momento de validar el historial de registros en CloudWatch se evidenciaba que no se ejecutaba la función. Después de varias pruebas e investigando en la documentación de Amazon, encontré que el servicio lambda viene de manera predeterminada con el uso de la zona horaria UTC, comúnmente utilizada en varias partes del mundo. Esta era la razón de por qué no se ejecutaba a la hora especificada en la función cron. Después de validar que existen 5 horas de diferencia, modifiqué el evento para que se ejecutara a las 13 horas, es decir, las 10 horas en la zona horaria de Bogotá (UTC-5).
+En el archivo zappa_settings.json se especifica el nombre del archivo Python y la función. Asimismo, se establece que todos los lunes a las 9 am se active la función lambda. Inicialmente establecí la expresión de la siguiente manera: cron(0 9 ? '*' MON '*'). En el momento de validar el historial de registros en CloudWatch se evidenciaba que no se ejecutaba la función. Después de varias pruebas e investigando en la documentación de Amazon, encontré que el servicio lambda viene de manera predeterminada con el uso de la zona horaria UTC, comúnmente utilizada en varias partes del mundo. Esta era la razón de por qué no se ejecutaba a la hora especificada en la función cron. Después de validar que existen 5 horas de diferencia, modifiqué el evento para que se ejecutara a las 13 horas, es decir, las 10 horas en la zona horaria de Bogotá (UTC-5).
 
 Como ejemplo de prueba, para este caso queria que mi función lambda se ejecutará a las 11:18PM hora local, para esto deberia utilizar la expresion cron(18 4 ? '*' MON '*'). Entendido esto, despues configure mi expressión en el archivo zappa_settings para que se desencadenara una acción todos los lunes a las 9 am.
 
@@ -42,19 +42,16 @@ zappa schedule dev
 ```
 ### Web scraping - Extracción de datos 📋
 
-Primero se valida cuál fue el último archivo HTML subido al primer bucket. Esta búsqueda se realiza encontrando la diferencia entre la fecha actual y la fecha de subida para archivo que se encuentra el atributo Lastmodified del diccionario contents. Posteriormente, se analiza y se encuentra los datos de cada casa a través de BeautifulSoup que permite encontrar todas las etiquetas de la clase listing listing-card. Por otra parte, se observa que existe una generalidad en la página, ya que en cada etiqueta de clase listing-lising card se tiene como atributos, la cantidad de baños, habitaciones y precio. Para cada casa, en algunas ocasiones no se especifica la cantidad de baños o habitaciones, es por esto que primero se realiza una validación en donde si no se especifica la cantidad se ingresa un valor nulo a la lista.
-Se programo de manera que cada atributo de la casa representara una lista que se encuentra contenida en un diccionario, que después a través de la librería de Pandas vamos a poder obtener nuestro archivo .csv.
+Primero se valida cuál fue el último archivo HTML subido al primer bucket. Esta búsqueda se realiza encontrando la diferencia entre la fecha actual y la fecha de subida para archivo, mediante el atributo Lastmodified del diccionario contents. Posteriormente, se analiza y se encuentra los datos de cada casa a través de BeautifulSoup que permite encontrar todas las etiquetas de la clase listing listing-card. Por otra parte, se observa que existe una generalidad en la página, ya que en cada etiqueta de clase listing-lising card se tiene como atributos, la cantidad de baños, habitaciones y precio. Para cada casa, en algunas ocasiones no se especifica la cantidad de baños o habitaciones, es por esto que primero se realiza una validación en donde si no se especifica la cantidad se ingresa un valor nulo a la lista.
+Se programó de manera que cada atributo de la casa representara una lista que se encuentra contenida en un diccionario, que después a través de la librería de Pandas vamos a poder obtener nuestro archivo .csv.
 
 ```
 flake8 .
 ```
 
-Se encarga de
-
-
 ### Pruebas unitarias 🔧
 1. Se simula la descarga de una página web utilizando la biblioteca urllib.request y se valida el contenido HTML descargado.
-2. 
+
 3. Se hace una prueba para validar si el nombre de dominio se encuentra asociado a una dirección ip que permite saber en que lugar del mundo se encuentra ubicado el servidor.
 
 3. Se realiza la petición de tipo GET a la pagina de mitula y se recibe un codigo que se encuentra en el encabezado del mensaje que permite validar si existieron problemas de comunicación desde la parte del cliente o del servidor.
@@ -74,10 +71,3 @@ La libreria flake8 permitia examinar los archivos especilamnete de lenguaje pyth
 ```
 flake8 --config=.flake8
 ```
-![Texto alternativo](https://i.postimg.cc/0NBSbdCT/Captura-de-pantalla-2023-03-12-234133.png)
-![Texto alternativo](https://i.postimg.cc/yY1NC3mc/Captura-de-pantalla-2023-03-12-233732.png)
-![Texto alternativo](https://i.postimg.cc/yNZ1ymK4/Captura-de-pantalla-2023-03-12-233355.png)
-![Texto alternativo](https://i.postimg.cc/g25chMfH/Captura-de-pantalla-2023-03-12-232012.png)
-![Texto alternativo](https://i.postimg.cc/K84vRXsY/Captura-de-pantalla-2023-03-12-231937.png)
-![Texto alternativo](https://i.postimg.cc/bJfzCZYG/Captura-de-pantalla-2023-03-12-231529.png)
-![Texto alternativo](https://i.postimg.cc/6qkLysd4/Captura-de-pantalla-2023-03-13-022143.png)
