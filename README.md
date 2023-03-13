@@ -1,23 +1,18 @@
-* Autor: Edwin Alexander Vargas Jimenez 
 * Universidad Sergio Arboleda
 * Big Data
 * Parcial 3° corte
-* Domingo 12 de marzo del 2023
+* Domingo 12 de marzo de 2023
+## Ejecución de la función lambda para la descarga del archivo .html
+Se describe el proceso realizado para hacer web scraping a la página de Mitula. Por un lado, se configura un evento a las 10 am de cada lunes, con el fin de que se realice un trigger hacia la función lambda y se ejecute la función f, escrita en lenguaje Python. Esta función tiene un desencadenador hacia un bucket s3 que permite guardar la página en una carpeta llamada landing-casas-xxx. Del mismo modo, para realizar el web scraping se debe leer el archivo obteniendo el contenido en formato html almacenado en el primer bucket.
 
-## Ejecución de la funcion lambda para la descarga del archvio .html
-Se realiza web sraping a la pagina de mitula Se codnfigura un veneto a las 10 am de cada lunes, con el fdin de que se realice un trigger hacia la funcipón lmabda y se ejecute la función f, escrita en lenguaje python.
-Esta función tiene un desencadenador hacia un bucket s3 que permite guardar la pagina en una carpeta llamada landing-casas-xxx de un BucketS3.  Del mismo modo, para raelizar el web scrapping se debe leer el archivo obteniendo el contenido en formato html. El nombre del archivo contine la fecha de ejecución del lambda.
+Después de digitar el comando, en el archivo zappa_settings.json se especifica el nombre del archivo Python y la función. Asimismo, se establece que todos los lunes a las 9 am se active la función lambda. Inicialmente se establecía la expresión de la siguiente manera: cron(0 9 ? '*' MON '*'). En el momento de validar el historial de registros en CloudWatch se evidenciaba que no se ejecutaba la función. Después de varias pruebas e investigando en la documentación de Amazon, encontré que el servicio lambda viene de manera predeterminada con el uso de la zona horaria UTC, comúnmente utilizada en varias partes del mundo. Esta era la razón de por qué no se ejecutaba a la hora especificada en la función cron. Después de validar que existen 5 horas de diferencia, modifiqué el evento para que se ejecutara a las 13 horas, es decir, las 10 horas en la zona horaria de Bogotá (UTC-5).
+A continuación, se muestra una captura de pantalla del ambiente cloud9, el almacenamiento de la página en el primer bucket y la subida de un archivo CSV en el segundo bucket.
 
+![Texto alternativo](https://i.postimg.cc/g25chMfH/Captura-de-pantalla-2023-03-12-232012.png)
 
+![Texto alternativo](https://i.postimg.cc/K84vRXsY/Captura-de-pantalla-2023-03-12-231937.png)
 
-Despues de digitar el comando 
-En el archivo zappa_settings.json se especifica el nombre del archivo python y la función. Al igual se esteblece que todos los lunes a las 10am se active la función lambda. nicialmente establecia la edxpresión de la sigyuinete manera:
-
-En el momento de validar el hisotria de regsitros en CloudWatch se evidenciaba que no se ejecutaba la función. Despues de varias pruebas e investigandoi en la doucmnetacipón de amazon, encontre que el serrvicio lambda viene de manera predetermnianda con el uso de la zona horaria UTC, comunmnete utilizada en varias partes del mundo. Esta era la razon de porque no se ejecutaba a la hora especificada en la función cron, despues de validar que existen 5 horas de diferencia, modifique el evento para que se ejecutara a las 13 horas, es decir las 10 horas en la zona horaria de bogotá (UTC-5).
-
-A continuación se muestra captura de pantalla del ambiente cloud9, el hsitoria de grsitros de cloudwatch, el almacenmiento de la pagian en el primer bucket y la subida de un archvio csv en el segundo bucket. 
-
-Se realizan varias preubas para que finalmente se obtenga la siguiiente estriuctura del archvio csv
+![Texto alternativo](https://i.postimg.cc/bJfzCZYG/Captura-de-pantalla-2023-03-12-231529.png)
 
 
 
@@ -25,19 +20,15 @@ Se realizan varias preubas para que finalmente se obtenga la siguiiente estriuct
 
 
 
+Se realizaron varias pruebas para que finalmente se obtuviera la siguiente estructura del archivo CSV:
 
-En el archvio json de nombre zappa_settings se realiza la declaración del nombre de la función lambda, el archivo. En mi caso utilice dos ambientes de trabajo en donde cada uno tuviera la declaración de una función con la zona de despliqyu, bucket de lamacenuamienot, el rol de usuario para obtener los permisos necesarios
+En el archivo JSON de nombre zappa_settings se realiza la declaración del nombre de la función lambda, el archivo. En mi caso, utilicé dos ambientes de trabajo en donde cada uno tuviera la declaración de una función con la zona de despliegue, bucket de almacenamiento, el rol de usuario para obtener los permisos necesarios.
 
+Primero se valida cuál fue el último archivo HTML subido al primer bucket. Esta búsqueda se realiza encontrando la diferencia entre la fecha actual y la fecha de subida para archivo que se encuentra el atributo Lastmodified del diccionario contents. Posteriormente, se analiza y se encuentra los datos de cada casa a través de BeautifulSoup que permite encontrar todas las etiquetas de la clase listing listing-card.
 
+Cada atributo representa una lista que se encuentra contenida en un diccionario, que después a través de la librería de Pandas vamos a poder obtener un archivo .csv.
 
-
-Primero se valida cual fue el utimo archvio html subido al primer bucket, esta busqueda se realiza encontrado la diferencia entre la fecha actual y la fecha de subida para archvio que se encuentra el atributo Lastmodified del diccioanrio contents. Posteriormente, se analiza y se encunetra los datos de cada casa a traves de BeautifulSoup que permite encontrar todas las etiquetas de la clase listing listing-card. 
-
-Cada atributo representa una lista que se encuentra contenida en un diccionario, que despues a traves de la libreria de pandas vamos a poder obtener un archivo .csv.
-
-Por ora parte 
-Se observa que existe una generalidad en la pagina, ya que en cada etiqueta de clase listing-lising card se tiene como atributos, la cantidad de baños, habitaciones y precio. Para cada casa, en algunas ocasiones no se especifica la cantidad de baños o abitaciones, es por esto que primero se realiza una validación en donde si no se espcifica la cantidad se ingresa un valor nulo a la lista.
-
+Por otra parte, se observa que existe una generalidad en la página, ya que en cada etiqueta de clase listing-lising card se tiene como atributos, la cantidad de baños, habitaciones y precio. Para cada casa, en algunas ocasiones no se especifica la cantidad de baños o habitaciones, es por esto que primero se realiza una validación en donde si no se especifica la cantidad se ingresa un valor nulo a la lista.
 
 
 _Acá va un párrafo que describa lo que es el proyecto_
@@ -144,49 +135,9 @@ Da un ejemplo
 
 ## Despliegue 📦
 
-_Agrega notas adicionales sobre como hacer deploy_
-
-## Construido con 🛠️
-
-_Menciona las herramientas que utilizaste para crear tu proyecto_
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
-
-## Contribuyendo 🖇️
-
-Por favor lee el [CONTRIBUTING.md](https://gist.github.com/villanuevand/xxxxxx) para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
-
-## Wiki 📖
-
-Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://github.com/tu/proyecto/wiki)
-
-## Versionado 📌
-
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/tu/proyecto/tags).
-
-## Autores ✒️
-
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
-
-* **Andrés Villanueva** - *Trabajo Inicial* - [villanuevand](https://github.com/villanuevand)
-* **Fulanito Detal** - *Documentación* - [fulanitodetal](#fulanito-de-tal)
-
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
-
-## Licencia 📄
-
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
-
-## Expresiones de Gratitud 🎁
-
-* Comenta a otros sobre este proyecto 📢
-* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
-* Da las gracias públicamente 🤓.
-* Dona con cripto a esta dirección: `0xf253fc233333078436d111175e5a76a649890000`
-* etc.
-
+* [Zappa] - Despliegue
+* [pytest] - Ejecución de pruebas
+* [flake8] - Usado para generar RSS
 
 
 ---
