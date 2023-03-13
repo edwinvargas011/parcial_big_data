@@ -70,6 +70,7 @@ Se encarga de
 
 
 ### Pruebas unitarias 🔧
+1. Se simula la descarga de una página web utilizando la biblioteca urllib.request y se valida el contenido HTML descargado.
 2. Se hace una prueba para validar si el nombre de dominio se encunetra asocidao a una dirección ip que permite saber en que lugar del mundo se encuentra ubicado el servidor
 
 omo entrada y devuelve True si el nombre de host se puede resolver a una dirección IP utilizando socket.
