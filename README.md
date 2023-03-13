@@ -4,7 +4,7 @@
 * Parcial 3° corte
 * Domingo 12 de marzo del 2023
 
-# Ejecución de la funcion lambda para la descarga del archvio .html
+## Ejecución de la funcion lambda para la descarga del archvio .html
 Se realiza web sraping a la pagina de mitula Se codnfigura un veneto a las 10 am de cada lunes, con el fdin de que se realice un trigger hacia la funcipón lmabda y se ejecute la función f, escrita en lenguaje python.
 Esta función tiene un desencadenador hacia un bucket s3 que permite guardar la pagina en una carpeta llamada landing-casas-xxx de un BucketS3.  Del mismo modo, para raelizar el web scrapping se debe leer el archivo obteniendo el contenido en formato html. El nombre del archivo contine la fecha de ejecución del lambda.
 
@@ -42,7 +42,7 @@ Se observa que existe una generalidad en la pagina, ya que en cada etiqueta de c
 
 _Acá va un párrafo que describa lo que es el proyecto_
 
-## Expresión Cron - Agendar evento 🚀
+### Expresión Cron - Agendar evento 🚀
 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
