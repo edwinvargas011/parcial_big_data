@@ -6,23 +6,21 @@
 Se describe el proceso realizado para hacer web scraping a la página de Mitula. Por un lado, se configura un evento a las 10 am de cada lunes, con el fin de que se realice un trigger hacia la función lambda y se ejecute la función f, escrita en lenguaje Python. Esta función tiene un desencadenador hacia un bucket s3 que permite guardar la página en una carpeta llamada landing-casas-xxx. Del mismo modo, para realizar el web scraping se debe leer el archivo obteniendo el contenido en formato html almacenado en el primer bucket.
 
 Después de digitar el comando, en el archivo zappa_settings.json se especifica el nombre del archivo Python y la función. Asimismo, se establece que todos los lunes a las 9 am se active la función lambda. Inicialmente se establecía la expresión de la siguiente manera: cron(0 9 ? '*' MON '*'). En el momento de validar el historial de registros en CloudWatch se evidenciaba que no se ejecutaba la función. Después de varias pruebas e investigando en la documentación de Amazon, encontré que el servicio lambda viene de manera predeterminada con el uso de la zona horaria UTC, comúnmente utilizada en varias partes del mundo. Esta era la razón de por qué no se ejecutaba a la hora especificada en la función cron. Después de validar que existen 5 horas de diferencia, modifiqué el evento para que se ejecutara a las 13 horas, es decir, las 10 horas en la zona horaria de Bogotá (UTC-5).
-A continuación, se muestra una captura de pantalla del ambiente cloud9, el almacenamiento de la página en el primer bucket y la subida de un archivo CSV en el segundo bucket.
+
+![Texto alternativo](https://i.postimg.cc/bJfzCZYG/Captura-de-pantalla-2023-03-12-231529.png)
+
+A continuación, se muestra una captura de pantalla de la subida de la página al primer bucket y la subida de un archivo CSV en el segundo bucket.
 
 ![Texto alternativo](https://i.postimg.cc/g25chMfH/Captura-de-pantalla-2023-03-12-232012.png)
 
 ![Texto alternativo](https://i.postimg.cc/K84vRXsY/Captura-de-pantalla-2023-03-12-231937.png)
 
-![Texto alternativo](https://i.postimg.cc/bJfzCZYG/Captura-de-pantalla-2023-03-12-231529.png)
-
-
-
-
-
-
-
 Se realizaron varias pruebas para que finalmente se obtuviera la siguiente estructura del archivo CSV:
 
-En el archivo JSON de nombre zappa_settings se realiza la declaración del nombre de la función lambda, el archivo. En mi caso, utilicé dos ambientes de trabajo en donde cada uno tuviera la declaración de una función con la zona de despliegue, bucket de almacenamiento, el rol de usuario para obtener los permisos necesarios.
+![Texto alternativo](https://i.postimg.cc/yNZ1ymK4/Captura-de-pantalla-2023-03-12-233355.png)
+
+
+En el archivo JSON de nombre zappa_settings se realiza la declaración del nombre de la función lambda y el archivo. En mi caso, utilicé dos ambientes de trabajo en donde cada uno tuviera la declaración de una función con la zona de despliegue, bucket de almacenamiento y el rol de usuario para obtener los permisos necesarios.
 
 Primero se valida cuál fue el último archivo HTML subido al primer bucket. Esta búsqueda se realiza encontrando la diferencia entre la fecha actual y la fecha de subida para archivo que se encuentra el atributo Lastmodified del diccionario contents. Posteriormente, se analiza y se encuentra los datos de cada casa a través de BeautifulSoup que permite encontrar todas las etiquetas de la clase listing listing-card.
 
