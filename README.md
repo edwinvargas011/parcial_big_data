@@ -64,7 +64,7 @@ def validate_code(url):
 
 ```
 ![Texto alternativo](https://i.postimg.cc/0NBSbdCT/Captura-de-pantalla-2023-03-12-234133.png)
-![Texto alternativo](https://i.postimg.cc/yY1NC3mc/Captura-de-pantalla-2023-03-12-233732.png)
+
 
 ### Revisión de codigo limpio
 La libreria flake8 permitia examinar los archivos especilamnete de lenguaje python con el fin de advertir errores de sintaxis,redundancia de codigo, el nivel de complejidad de las funciones,variables o impoertaciones no utilizadas durante el desarrollo del cdogio. Se crea un archvio de configuración perosnaliazdo en donde se decide que tipo de reglas aplicar.
