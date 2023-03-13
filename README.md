@@ -22,29 +22,10 @@ Se realizaron varias pruebas para que finalmente se obtuviera la siguiente estru
 
 ![Texto alternativo](https://i.postimg.cc/yNZ1ymK4/Captura-de-pantalla-2023-03-12-233355.png)
 
+### Configuración de las funciones lambda - Zappa🚀
 
 En el archivo JSON de nombre zappa_settings se realiza la declaración del nombre de la función lambda y el archivo. En mi caso, utilicé dos ambientes de trabajo en donde cada uno tuviera la declaración de una función con la zona de despliegue, bucket de almacenamiento y el rol de usuario para obtener los permisos necesarios.
-
-Primero se valida cuál fue el último archivo HTML subido al primer bucket. Esta búsqueda se realiza encontrando la diferencia entre la fecha actual y la fecha de subida para archivo que se encuentra el atributo Lastmodified del diccionario contents. Posteriormente, se analiza y se encuentra los datos de cada casa a través de BeautifulSoup que permite encontrar todas las etiquetas de la clase listing listing-card.
-
-Cada atributo representa una lista que se encuentra contenida en un diccionario, que después a través de la librería de Pandas vamos a poder obtener un archivo .csv.
-
-Por otra parte, se observa que existe una generalidad en la página, ya que en cada etiqueta de clase listing-lising card se tiene como atributos, la cantidad de baños, habitaciones y precio. Para cada casa, en algunas ocasiones no se especifica la cantidad de baños o habitaciones, es por esto que primero se realiza una validación en donde si no se especifica la cantidad se ingresa un valor nulo a la lista.
-
-
-_Acá va un párrafo que describa lo que es el proyecto_
-
-### Expresión Cron - Agendar evento 🚀
-
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
-
-Mira **Deployment** para conocer como desplegar el proyecto.
-
-
-### Web scraping - Extracción de datos 📋
-
-### Web scraping - Configuración del archvio zappa_settings 📋
-
+Los siguientes comandos fueron utilizados para desplegar o actualizar los servicios necesarios para la puesta en marcha de la función lambda 
 ```
 zappa init
 ```
@@ -59,6 +40,10 @@ zappa update dev
 ```
 zappa schedule dev
 ```
+### Web scraping - Extracción de datos 📋
+
+Primero se valida cuál fue el último archivo HTML subido al primer bucket. Esta búsqueda se realiza encontrando la diferencia entre la fecha actual y la fecha de subida para archivo que se encuentra el atributo Lastmodified del diccionario contents. Posteriormente, se analiza y se encuentra los datos de cada casa a través de BeautifulSoup que permite encontrar todas las etiquetas de la clase listing listing-card. Por otra parte, se observa que existe una generalidad en la página, ya que en cada etiqueta de clase listing-lising card se tiene como atributos, la cantidad de baños, habitaciones y precio. Para cada casa, en algunas ocasiones no se especifica la cantidad de baños o habitaciones, es por esto que primero se realiza una validación en donde si no se especifica la cantidad se ingresa un valor nulo a la lista.
+Se programo de manera que cada atributo de la casa representara una lista que se encuentra contenida en un diccionario, que después a través de la librería de Pandas vamos a poder obtener nuestro archivo .csv.
 
 ```
 flake8 .
