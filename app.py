@@ -11,21 +11,19 @@ name_file = ""
 def f(event, context):
     url = "https://casas.mitula.com.co/searchRE/q-Chapinero--Cundinamarca"
     html = urllib.request.urlopen(url).read().decode('utf-8')
-    print(html)
     s3 = boto3.client('s3')
-    s3.put_object(Bucket="zappa-1lpoc50kw",Key="landing-casas-xxx/page33.html",Body=html)
-    print("Finaliza")
+    s3.put_object(Bucket="zappa-1lpoc50kw", Key="landing-casas-xxx/"+datetime.strftime(datetime.now(), '%Y_%m_%d %H:%M;%S')+".html", Body=html)
     return {
         'statusCode': 200,
         'body': json.dumps('Función Lambda ejecutada exitosamente')
     }
-    
+
 
 def download_html(mocker):
     req = urllib.request.Request("https://casas.mitula.com.co/searchRE/q-Chapinero--Cundinamarca")
     response = urllib.request.urlopen(req)
     print("Edwin"+response.getcode())
-    print("Edwin_2",response.read())
+    print("Edwin_2", response.read())
     return response.read()
 
 
@@ -41,10 +39,10 @@ def validate_hostbyname(url):
     except socket.error:
         return False
 
-    
+
 def validate_upload_page(url):
     s3 = boto3.client("s3")
     html = urllib.request.urlopen("https://casas.mitula.com.co/searchRE/q-Chapinero--Cundinamarca").read().decode('utf-8')
     name_file = "landing-casas-xxx/"+datetime.now().strftime("%Y-%m-%d_%H-%M-%S")+".html"
-    response = s3.put_object(Bucket="zappa-1lpoc50kw",Key=name_file,Body=html)
+    response = s3.put_object(Bucket="zappa-1lpoc50kw", Key=name_file, Body=html)
     return response['ResponseMetadata']['HTTPStatusCode']

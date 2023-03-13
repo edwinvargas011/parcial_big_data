@@ -11,11 +11,10 @@
         "s3_bucket": "zappa-1lpoc50kw",
         "log_group_name": "/aws/lambda/parcial-dev",
         "events": [{
-            "expression": "cron(0/1 * * * ? *)","function":"app.f"}
+            "expression": "cron(0 14 ? * MON *)","function":"app.f"},
             {"function": "app2.f","event_source": {
                   "arn":  "arn:aws:s3:::zappa-1lpoc50kw",
-                  "events": ["s3:ObjectCreated:*"],
-                  "key_filters": [{"Name":"prefix"."Value":"page"},{"Name":"suffix","Value":".html"}]
+                  "events": ["s3:ObjectCreated:*"]
             }
         }]
         
